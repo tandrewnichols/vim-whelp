@@ -1,6 +1,6 @@
 # Vim-Whelp
 
-Keep track of what you've looked up in vim's help.
+Keep track of what you've looked up in vim's help. The name, like all my plugins, is just a word that contains the main concept ("help" in this case), but I also think of it as "Write help."
 
 ## Overview
 
