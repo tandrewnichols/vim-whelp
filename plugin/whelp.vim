@@ -14,7 +14,7 @@ augroup Whelp
   exec "au BufEnter" g:whelp_file "nnoremap <buffer> K :call whelp#reopen()\<CR>"
 augroup END
 
-command! -nargs=0 Helps :call whelp#show()
-command! -nargs=0 -bang VHelps :call whelp#show('vsp', <bang>0)
-command! -nargs=0 -bang SHelps :call whelp#show('sp', <bang>0)
-command! -nargs=0 THelps :call whelp#show('tabe')
+command! -nargs=0 Whelp :call whelp#show()
+command! -nargs=0 -bang VWhelp :call whelp#show('vsp', <bang>0)
+command! -nargs=0 -bang SWhelp :call whelp#show('sp', <bang>0)
+command! -nargs=0 TWhelp :call whelp#show('tabe')

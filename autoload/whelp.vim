@@ -18,11 +18,10 @@ function! whelp#reopen() abort
   normal ^"ay$
   let text = split(@a, ' | ')[0]
   call setpos('.', pos)
-  exec "noautocmd h" text
 
-  " noautocmd makes syntax highlighting break in help files
-  " so just set the filetype manually to retrigger highlighting
-  setf help
+  call whelp#disarm()
+  exec "h" text
+  call whelp#arm()
 endfunction
 
 function! whelp#show(...) abort
@@ -39,13 +38,21 @@ function! whelp#show(...) abort
   endif
 
   if type != 'e'
-    augroup AutocloseHelp
-      au!
-      exec "au BufLeave" g:whelp_file "q | au! AutocloseHelp BufLeave"
-    augroup END
+    call whelp#arm()
   endif
 
   call whelp#configure()
+endfunction
+
+function! whelp#arm() abort
+  augroup AutocloseHelp
+    au!
+    exec "au BufLeave" g:whelp_file "q | au! AutocloseHelp BufLeave"
+  augroup END
+endfunction
+
+function! whelp#disarm() abort
+  au! AutocloseHelp BufLeave
 endfunction
 
 function! whelp#configure() abort
