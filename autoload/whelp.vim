@@ -101,6 +101,7 @@ function! whelp#prune(count) abort
     let entrytime = strftime(s:whelpTimeFormat, split(line, ' | ')[1])
     if entrytime < time
       let index = index(lines, line)
+      break
     endif
   endfor
 
