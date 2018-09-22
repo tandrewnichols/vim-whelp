@@ -71,3 +71,18 @@ endfunction
 function! whelp#clear() abort
   call writefile([], g:whelp_file)
 endfunction
+
+function! whelp#dedupe() abort
+  let lines = readfile(g:whelp_file)
+  let kept = []
+  let list = []
+  for line in lines
+    let entry = split(line, ' | ')[0]
+    if index(kept, entry) == -1
+      call add(list, line)
+      call add(kept, entry)
+    endif
+  endfor
+
+  call writefile(list, g:whelp_file)
+endfunction
