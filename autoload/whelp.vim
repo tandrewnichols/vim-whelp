@@ -1,4 +1,5 @@
 let s:whelpTimeFormat = '%b %d, %Y at %I:%M:%S %p'
+
 function! whelp#save() abort
   " Don't entries if we run help from within the whelp list
   if getcmdtype() == ':' && &l:ft != 'whelp'
