@@ -34,7 +34,7 @@ function! whelp#show(...) abort
     if (type == 'vsp' && &splitbelow) || (type == 'sp' && &splitright)
       exec "abo" type g:whelp_file
     else
-      exec "bel" tpye g:whelp_file
+      exec "bel" type g:whelp_file
     endif
   endif
 
