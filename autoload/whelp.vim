@@ -8,7 +8,8 @@ function! whelp#save() abort
         let now = strftime('%b %d, %Y at %I:%M:%S %p')
         let entry = entry . ' | ' . now
       endif
-      call writefile([entry], g:whelp_file, "a")
+      let lines = readfile(g:whelp_file)
+      call writefile([entry] + lines, g:whelp_file)
     endif
   endif
 endfunction
