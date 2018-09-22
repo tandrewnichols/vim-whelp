@@ -1,5 +1,6 @@
 function! whelp#save() abort
-  if getcmdtype() == ':'
+  " Don't entries if we run help from within the whelp list
+  if getcmdtype() == ':' && &l:ft != 'whelp'
     let line = getcmdline()
     if line =~ '^h ' || line =~ '^help '
       let entry = join(split(line, ' ')[1:], ' ')
@@ -15,11 +16,9 @@ endfunction
 function! whelp#reopen() abort
   let pos = getcurpos()
   normal ^"ay$
-  if @a =~ ' | '
-    let @a = split(@a, ' | ')[0]
-  endif
+  let text = split(@a, ' | ')[0]
   call setpos('.', pos)
-  exec "noautocmd h" @a
+  exec "noautocmd h" text
 
   " noautocmd makes syntax highlighting break in help files
   " so just set the filetype manually to retrigger highlighting
