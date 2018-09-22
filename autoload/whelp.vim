@@ -48,7 +48,7 @@ endfunction
 function! whelp#arm() abort
   augroup AutocloseHelp
     au!
-    exec "au BufLeave" g:whelp_file "q | au! AutocloseHelp BufLeave"
+    exec "au BufLeave" g:whelp_file "bw | au! AutocloseHelp BufLeave"
   augroup END
 endfunction
 
