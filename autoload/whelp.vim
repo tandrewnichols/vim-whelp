@@ -1,3 +1,4 @@
+let s:whelpTimeFormat = '%b %d, %Y at %I:%M:%S %p'
 function! whelp#save() abort
   " Don't entries if we run help from within the whelp list
   if getcmdtype() == ':' && &l:ft != 'whelp'
@@ -5,7 +6,7 @@ function! whelp#save() abort
     if line =~ '^h ' || line =~ '^help '
       let entry = join(split(line, ' ')[1:], ' ')
       if exists('*strftime')
-        let now = strftime('%b %d, %Y at %I:%M:%S %p')
+        let now = strftime(s:whelpTimeFormat)
         let entry = entry . ' | ' . now
       endif
       let lines = readfile(g:whelp_file)
@@ -85,4 +86,27 @@ function! whelp#dedupe() abort
   endfor
 
   call writefile(list, g:whelp_file)
+endfunction
+
+function! whelp#prune(count) abort
+  " Count is number of days, so multiple by number of seconds in a day
+  " and subtract that number from the current epoch to get a cutoff timestamp
+  let time = localtime() - (count * 86400)
+  let lines = readfile(g:whelp_file)
+  if !len(lines)
+    return
+  endif
+
+  for line in lines
+    let entrytime = strftime(s:whelpTimeFormat, split(line, ' | ')[1])
+    if entrytime < time
+      let index = index(lines, line)
+    endif
+  endfor
+
+  if index == 0
+    call writefile([], g:whelp_file)
+  else
+    call writefile(lines[0:index - 1], g:whelp_file)
+  endif
 endfunction
