@@ -67,3 +67,7 @@ function! whelp#configure() abort
   setlocal noswapfile
   setlocal nowrap
 endfunction
+
+function! whelp#clear() abort
+  call writefile([], g:whelp_file)
+endfunction
