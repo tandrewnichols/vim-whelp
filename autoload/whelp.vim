@@ -64,10 +64,24 @@ function! whelp#configure() abort
   setlocal nospell
   setlocal nobuflisted
   setlocal filetype=whelp
-  setlocal buftype=nofile
   setlocal nomodifiable
   setlocal noswapfile
   setlocal nowrap
+  nnoremap <silent> <nowait> <buffer> <Plug>WhelpRemoveEntry :<C-U>call whelp#removeEntry()<CR>
+  if !hasmapto('<Plug>WhelpRemoveEntry')
+    nmap - <Plug>WhelpRemoveEntry
+  endif
+endfunction
+
+function! whelp#removeEntry() abort
+  setlocal modifiable
+  if v:count > 0
+    exec "normal" v:count . "dd"
+  else
+    normal dd
+  endif
+  w
+  setlocal nomodifiable
 endfunction
 
 function! whelp#clear() abort
