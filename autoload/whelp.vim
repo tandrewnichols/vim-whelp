@@ -48,14 +48,18 @@ function! whelp#show(...) abort
 endfunction
 
 function! whelp#arm() abort
-  augroup AutocloseHelp
-    au!
-    exec "au BufLeave" g:whelp_file "bw | au! AutocloseHelp BufLeave"
-  augroup END
+  if g:whelp_autoclose
+    augroup AutocloseHelp
+      au!
+      exec "au BufLeave" g:whelp_file "bw | au! AutocloseHelp BufLeave"
+    augroup END
+  endif
 endfunction
 
 function! whelp#disarm() abort
-  au! AutocloseHelp BufLeave
+  if exists('#AutocloseHelp#BufLeave')
+    au! AutocloseHelp BufLeave
+  endif
 endfunction
 
 function! whelp#configure() abort

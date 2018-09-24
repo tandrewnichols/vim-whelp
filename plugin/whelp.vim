@@ -3,6 +3,7 @@ if exists("g:loaded_whelp") || &cp | finish | endif
 let g:loaded_whelp = 1
 
 let g:whelp_VERSION = '1.0.0'
+let g:whelp_autoclose = get(g:, 'whelp_autoclose', 1)
 
 if !has_key(g:, 'whelp_file') || empty(g:whelp_file)
   let g:whelp_file = $HOME . "/.vim/whelp.txt"
