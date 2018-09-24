@@ -8,7 +8,7 @@ You know how some people highlight words they've looked up in the dictionary? I'
 
 ## Requirements
 
-I'm not exactly sure . . . I'm guessing this works best with vim 7.4 and later, but I haven't feature checked.
+I'm not exactly sure . . . I'm guessing this works best with vim 7.4 and later, but I haven't feature checked. Some functions use `strftime` which isn't available on all distributions. You can check with `exists('*strftime')`. If you don't have it, this plugin won't break vim . . . it just won't do certain date-related things.
 
 ## Installation
 
@@ -56,7 +56,53 @@ git clone https://github.com/tandrewnichols/vim-whelp.git ~/.vim/bundle/vim-whel
 
 ## Usage
 
-TODO
+The short version is "keep using help the way you normally do." This plugin just records all the things you look up (and _when_ you looked them up), and then you can review them at your leisure.
+
+## API
+
+### :Whelp
+
+View previous help entries in the current window.
+
+### :VWhelp[!]
+
+View previous help entries in a vertical split. When bang is provided, reverse the normal `splitbelow` settings.
+
+### :SWhelp[!]
+
+View previous help entries in a horizontal split. When bang is provided, reverse the normal `splitright` settings.
+
+### :TWhelp
+
+View previous Help entries in a new tab.
+
+### :ClearWhelp
+
+Remove all previously recorded help entries.
+
+### :DedupeWhelp
+
+Remove all duplicate help terms. The most recent entry will be kept.
+
+### :PruneWhelp {age}
+
+Remove all previously recorded help entries older than {age}.
+
+## Whelp file
+
+By default `vim-whelp` writes help entries to `$HOME/.vim/whelp.txt`, but you can override this location by setting `g:whelp_file`. When you use any of `:Whelp`, `:VWhelp`, `:SWhelp`, or `:TWhelp`, the whelp file will open in the corresponding buffer; it looks something like this:
+
+![whelp in a vertical split](./whelp.png)
+
+When whelp is opened in a split, leaving the whelp buffer (e.g. via `<C-w>h`) will autoclose the buffer. When whelp is the active buffer, the following mappings are available:
+
+### K
+
+Reopen the help for this entry
+
+### [count]-
+
+Delete [count] entries.
 
 ## Contributing
 
