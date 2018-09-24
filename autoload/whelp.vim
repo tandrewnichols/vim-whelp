@@ -71,10 +71,9 @@ function! whelp#configure() abort
   setlocal nomodifiable
   setlocal noswapfile
   setlocal nowrap
-  nnoremap <silent> <nowait> <buffer> <Plug>WhelpRemoveEntry :<C-U>call whelp#removeEntry()<CR>
-  if !hasmapto('<Plug>WhelpRemoveEntry')
-    nmap <buffer> - <Plug>WhelpRemoveEntry
-  endif
+
+  exec "nnoremap <silent> <nowait> <buffer>" g:whelp_remove_entry_mapping ":<C-U>call whelp#removeEntry()\<CR>"
+  exec "nnoremap <silent> <nowait> <buffer>" g:whelp_reopen_entry_mapping ":call whelp#reopen()\<CR>"
 endfunction
 
 function! whelp#removeEntry() abort

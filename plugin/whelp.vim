@@ -4,6 +4,8 @@ let g:loaded_whelp = 1
 
 let g:whelp_VERSION = '1.0.0'
 let g:whelp_autoclose = get(g:, 'whelp_autoclose', 1)
+let g:whelp_remove_entry_mapping = get(g:, 'whelp_remove_entry_mapping', '-')
+let g:whelp_reopen_entry_mapping = get(g:, 'whelp_reopen_entry_mapping', 'K')
 
 if !has_key(g:, 'whelp_file') || empty(g:whelp_file)
   let g:whelp_file = $HOME . "/.vim/whelp.txt"
@@ -12,7 +14,6 @@ endif
 augroup Whelp
   au!
   au CmdlineLeave * call whelp#save()
-  exec "au BufEnter" g:whelp_file "nnoremap <buffer> K :call whelp#reopen()\<CR>"
 augroup END
 
 command! -nargs=0 Whelp :call whelp#show()
