@@ -58,7 +58,7 @@ git clone https://github.com/tandrewnichols/vim-whelp.git ~/.vim/bundle/vim-whel
 
 The short version is "keep using help the way you normally do." This plugin just records all the things you look up (and _when_ you looked them up), and then you can review them at your leisure.
 
-## API
+## Commands
 
 ### :Whelp
 
@@ -82,11 +82,11 @@ Remove all previously recorded help entries.
 
 ### :DedupeWhelp
 
-Remove all duplicate help terms. The most recent entry will be kept.
+Remove all duplicate help terms, keeping only the most recent entry.
 
 ### :PruneWhelp {age}
 
-Remove all previously recorded help entries older than {age}.
+Remove all previously recorded help entries older than {age} (in days).
 
 ## Whelp file
 
@@ -98,11 +98,39 @@ When whelp is opened in a split, leaving the whelp buffer (e.g. via `<C-w>h`) wi
 
 ### K
 
-Reopen the help for this entry
+Reopen the help for this entry.
 
 ### [count]-
 
 Delete [count] entries.
+
+## Options
+
+The following options are available to configure the behavior of whelp.
+
+### g:whelp_file
+
+Where to save help entries.
+
+Default: `$HOME/.vim/whelp.txt`
+
+### g:whelp_autoclose
+
+Whether to autoclose the whelp buffer on BufLeave when it's opened in a split.
+
+Default: 1
+
+### g:whelp_remove_entry_mapping
+
+Mapping to remove entries from the whelp file.
+
+Default: -
+
+### g:whelp_reopen_entry_mapping
+
+Mapping to reopen the help for an entry in the whelp file.
+
+Default: K
 
 ## Contributing
 

@@ -1,0 +1,170 @@
+*whelp.txt* A historical record of your help queries
+
+INTRODUCTION                                 *whelp*
+
+Keep track of what you've looked up in vim help.
+
+CONTENTS                                     *whelp-contents*
+
+  1.  Overview                               |whelp-overview|
+  2.  Requirements                           |whelp-requirements|
+  3.  Installation                           |whelp-installation|
+  4.  Usage                                  |whelp-usage|
+  5.  Commands                               |whelp-commands|
+  6.  Mappings                               |whelp-mappings|
+  7.  Options                                |whelp-options|
+  8.  Issues                                 |whelp-issues|
+  9.  Contributing                           |whelp-contributing|
+  10. License                                |whelp-license|
+
+OVERVIEW                                     *whelp-overview*
+
+You know how some people highlight words they've looked up in the dictionary?
+I'm not one of those people. But on a whim, I did write this little plugin to
+keep track of things you've looked up in vim's help. Every time you run
+`:h something` or `:help something`, vim-whelp records it in a text file. You can
+then later open that file and browse around and even reopen the help entry.
+
+REQUIREMENTS                                 *whelp-requirements*
+
+Vim 7.4 or later. Some functions use `strftime` which is not included in every
+vim distribution, but if you don't have it, vim won't break. Those functions
+will just do less.
+
+INSTALLATION                                 *whelp-installation*
+
+  1. Manual
+
+     Clone this repository and copy the files in plugin/, autoload/, and doc/
+     to their respective directories in your vimfiles, or copy the text from
+     the github repository into new files in those directories. Make sure to
+     run `:helptags`.
+
+  2. Plug <https://github.com/junegunn/vim-plug>
+
+     Add the following to your vimrc, or something sourced therein: >
+
+     Plug 'tandrewnichols/vim-whelp'
+<
+     Then install via `:PlugInstall`
+
+  3. Vundle <https://github.com/gmarik/Vundle.vim>
+
+     Add the following to your vimrc, or something sourced therein: >
+
+     Plugin 'tandrewnichols/vim-whelp'
+<
+     Then install via `:BundleInstall`
+
+  4. NeoBundle <https://github.com/Shougo/neobundle.vim>
+
+     Add the following to your vimrc, or something sourced therein: >
+
+     NeoBundle 'tandrewnichols/vim-whelp'
+<
+     Then install via `:BundleInstall`
+
+  5. Pathogen <https://github.com/tpope/vim-pathogen> >
+
+     cd ~/.vim/bundle
+     git clone https://github.com/tandrewnichols/vim-whelp.git
+<
+     Then run `:Helptags`
+
+USAGE                                        *whelp-usage*
+
+Just keep using `:h` the way you always have. Vim-whelp will record your help
+queries so you can peruse them later. By default, entries are written to
+`$HOME/.vim/whelp.txt`. When whelp is opened in a split, the buffer will
+autoclose when you leave it.
+
+COMMANDS                                     *whelp-commands*
+
+                                             *whelp-:Whelp*
+:Whelp                  View previous help entries in the current window.
+
+                                             *whelp-:VWhelp*
+:VWhelp[!]              View previous help entries in a vertical split. If [!]
+                        is provided, reverse the normal `splitbelow` settings.
+
+                                             *whelp-:SWhelp*
+:SWhelp[!]              View previous help entries in a horizontal split. If
+                        [!] is provided, reverse the normal `splitbelow`
+                        settings.
+
+                                             *whelp-:TWhelp*
+:TWhelp                 View previous help entries in a new tab.
+
+                                             *whelp-:CearWhelp*
+:ClearWhelp             Remove all previously recorded help entries.
+
+                                             *whelp-:DedupeWhelp*
+:DedupeWhelp            Remove all duplicate help terms, keeping only the most
+                        recent entry.
+
+                                             *whelp-:PruneWhelp*
+:PruneWhelp {age}       Remove all previously recorded help entries older than
+                        {age} (in days).
+
+MAPPINGS                                     *whelp-mappings*
+
+The following mappings are available when the whelp file is focused.
+
+ Mapping     Description ~
+                                             *whelp-K*
+ K           Reopen the help entry for this entry.
+
+                                             *whelp--*
+ -           Delete [count] entries.
+
+OPTIONS                                      *whelp-options*
+
+                                             *whelp-g:whelp_file*
+Change where help entries are recorded. Default: `$HOME/.vim/whelp.txt`.
+
+                                             *whelp-g:whelp_autoclose*
+Autoclose the whelp buffer on |BufLeave| when it is open in a split.
+Default: 1
+
+                                             *whelp-g:whelp_remove_entry_mapping*
+Mapping to remove entries from the whelp file. Default: -
+
+                                             *whelp-g:whelp_reopen_entry_mapping*
+Mapping to reopen entries in the whelp file. Default: K
+
+ISSUES                                       *whelp-issues*
+
+If you experience issues using vim-whelp, please report them at
+<https://github.com/tandrewnichols/vim-whelp/issues>.
+
+CONTRIBUTING                                 *whelp-contributing*
+
+I always try to be open to suggestions, but I do still have opinions about what
+this should and should not be so . . . it never hurts to ask before investing a
+lot of time on a patch.
+
+LICENSE                                      *whelp-license*
+
+The MIT License (MIT)
+
+Copyright (c) 2018 Andrew Nichols
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+vim:tw=78:ts=2:ft=help:norl:
