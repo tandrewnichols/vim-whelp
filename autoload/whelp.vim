@@ -18,7 +18,7 @@ endfunction
 
 function! whelp#reopen() abort
   let pos = getcurpos()
-  normal ^"ay$
+  normal! ^"ay$
   let text = split(@a, ' | ')[0]
   call setpos('.', pos)
 
@@ -80,9 +80,9 @@ endfunction
 function! whelp#removeEntry() abort
   setlocal modifiable
   if v:count > 0
-    exec "normal" v:count . "dd"
+    exec "normal!" v:count . "dd"
   else
-    normal dd
+    normal! dd
   endif
   w
   setlocal nomodifiable
