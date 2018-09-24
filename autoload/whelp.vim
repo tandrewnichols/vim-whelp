@@ -69,7 +69,7 @@ function! whelp#configure() abort
   setlocal nowrap
   nnoremap <silent> <nowait> <buffer> <Plug>WhelpRemoveEntry :<C-U>call whelp#removeEntry()<CR>
   if !hasmapto('<Plug>WhelpRemoveEntry')
-    nmap - <Plug>WhelpRemoveEntry
+    nmap <buffer> - <Plug>WhelpRemoveEntry
   endif
 endfunction
 
