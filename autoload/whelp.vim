@@ -34,9 +34,9 @@ function! whelp#show(...) abort
     exec type g:whelp_file
   else
     if (type == 'vsp' && &splitbelow) || (type == 'sp' && &splitright)
-      exec "abo" type g:whelp_file
+      exec "abo keepjumps hide" type g:whelp_file
     else
-      exec "bel" type g:whelp_file
+      exec "bel keepjumps hide" type g:whelp_file
     endif
   endif
 
