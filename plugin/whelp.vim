@@ -2,7 +2,7 @@ if exists("g:loaded_whelp") || &cp | finish | endif
 
 let g:loaded_whelp = 1
 
-let g:whelp_VERSION = '1.0.0'
+let g:whelp_VERSION = '1.0.1'
 let g:whelp_autoclose = get(g:, 'whelp_autoclose', 1)
 let g:whelp_remove_entry_mapping = get(g:, 'whelp_remove_entry_mapping', '-')
 let g:whelp_reopen_entry_mapping = get(g:, 'whelp_reopen_entry_mapping', 'K')
