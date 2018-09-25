@@ -15,7 +15,8 @@ CONTENTS                                     *whelp-contents*
   7.  Options                                |whelp-options|
   8.  Issues                                 |whelp-issues|
   9.  Contributing                           |whelp-contributing|
-  10. License                                |whelp-license|
+  10. Version                                |whelp-version|
+  11. License                                |whelp-license|
 
 OVERVIEW                                     *whelp-overview*
 
@@ -142,6 +143,10 @@ CONTRIBUTING                                 *whelp-contributing*
 I always try to be open to suggestions, but I do still have opinions about what
 this should and should not be so . . . it never hurts to ask before investing a
 lot of time on a patch.
+
+VERSION                                      *whelp-version*
+
+Version 1.0.0
 
 LICENSE                                      *whelp-license*
 
